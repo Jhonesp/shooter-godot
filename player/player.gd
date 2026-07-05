@@ -20,4 +20,9 @@ func _physics_process(delta):
 	
 	var input_direction_3D = Vector3(input_direction_2D.x, 0.0, input_direction_2D.y)
 	
-	velocity = input_direction_3D * SPEED
+	var direction = transform.basis * input_direction_3D
+	
+	velocity.x = direction.x * SPEED
+	velocity.z = direction.z * SPEED
+	
+	move_and_slide()
