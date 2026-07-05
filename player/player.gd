@@ -10,3 +10,14 @@ func _unhandled_input(event):
 		%Camera3D.rotation_degrees.x = clamp(%Camera3D.rotation_degrees.x, -80.0, 80.0)
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+
+func _physics_process(delta):
+	const SPEED = 5.5
+	
+	var input_direction_2D = Input.get_vector(
+		"move_left", "move_right", "move_forward", "move_back")
+	
+	var input_direction_3D = Vector3(input_direction_2D.x, 0.0, input_direction_2D.y)
+	
+	velocity = input_direction_3D * SPEED
